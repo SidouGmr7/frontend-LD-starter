@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 
 export const useFetchData = () => {
     const [data, setData] = useState(null)
-    const [isProgress, setIsProgress] = useState(null)
+    const [isProgress, setIsProgress] = useState(false)
 
     useEffect(() => {
         setIsProgress(true)
