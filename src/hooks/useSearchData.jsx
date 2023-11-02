@@ -5,8 +5,8 @@ import { calculatePower } from '../utils'
 export const useSearchData = ({ data, setCurrentPage }) => {
     const [nameSearch, setNameSearch] = useState(null)
     const [powerSearch, setPowerSearch] = useState(null)
-    const copyData = [...data]
-    const filteredData = copyData
+    
+    const filteredData = data
         .filter(
             (pokemon) =>
                 pokemon.name.toLowerCase().includes(nameSearch?.toLowerCase()) || !nameSearch

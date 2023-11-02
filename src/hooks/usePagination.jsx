@@ -3,10 +3,8 @@ import { useState } from 'react'
 export const usePagination = ({ filteredData, setCurrentPage, currentPage }) => {
     const [rowsPerPage, setRowsPerPage] = useState(10)
 
-    const itemsPerPage = 10
-
-    const indexOfLastItem = (currentPage + 1) * itemsPerPage
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage
+    const indexOfLastItem = (currentPage + 1) * rowsPerPage
+    const indexOfFirstItem = indexOfLastItem - rowsPerPage
 
     const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem)
 

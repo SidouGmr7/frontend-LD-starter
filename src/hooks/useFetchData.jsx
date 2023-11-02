@@ -1,21 +1,22 @@
-import { useEffect, useState } from 'react'
-import { TableData } from './components/TableData'
+import { useState, useEffect } from 'react'
 
-function MyComponent() {
+export const useFetchData = () => {
     const [data, setData] = useState(null)
+    const [isProgress, setIsProgress] = useState(null)
 
     useEffect(() => {
+        setIsProgress(true)
         fetch('/pokemon.json')
             .then((response) => response.json())
             .then((jsonData) => {
                 setData(jsonData)
+                setIsProgress(false)
             })
             .catch((error) => {
                 console.error('Error fetching data:', error)
+                setIsProgress(false)
             })
     }, [])
 
-    return data && <TableData data={data} />
+    return { data, isProgress }
 }
-
-export default MyComponent

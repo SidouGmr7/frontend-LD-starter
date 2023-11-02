@@ -1,24 +1,11 @@
 import PropTypes from 'prop-types'
-import {
-    TextField,
-    Typography,
-    Grid,
-    Paper,
-    Autocomplete,
-    InputAdornment,
-    IconButton,
-} from '@mui/material'
-import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded'
+import { TextField, Typography, Grid, Paper, Autocomplete } from '@mui/material'
 import _ from 'lodash'
+
+import { calculatePower } from '../utils'
+
 export const SearchBar = (props) => {
-    const {
-        filteredData,
-        handleNameSearch,
-        handlePowerSearch,
-        calculatePower,
-        powerSearch,
-        setNameSearch,
-    } = props
+    const { filteredData, handleNameSearch, handlePowerSearch, powerSearch, setNameSearch } = props
 
     const minPower = !_.isEmpty(filteredData)
         ? Math.min(...filteredData.map((pokemon) => calculatePower(pokemon)))
@@ -65,15 +52,6 @@ export const SearchBar = (props) => {
                         value={powerSearch}
                         onChange={handlePowerSearch}
                         fullWidth
-                        InputProps={{
-                            endAdornment: (
-                                <InputAdornment position='end'>
-                                    <IconButton>
-                                        <FavoriteBorderRoundedIcon />
-                                    </IconButton>
-                                </InputAdornment>
-                            ),
-                        }}
                         size='small'
                     />
                 </Grid>
@@ -94,7 +72,6 @@ SearchBar.propTypes = {
     filteredData: PropTypes.array.isRequired,
     handleNameSearch: PropTypes.func.isRequired,
     handlePowerSearch: PropTypes.func.isRequired,
-    calculatePower: PropTypes.func.isRequired,
     setNameSearch: PropTypes.any.isRequired,
     powerSearch: PropTypes.string.isRequired,
 }
